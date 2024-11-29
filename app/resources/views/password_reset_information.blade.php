@@ -25,17 +25,15 @@
 <body background="{{ asset('storage/samsung-memory-rMSYJWOIgMw-unsplash.jpg')}}" >
     <div class="container-fluid" >
         <div id="app">
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container">
-                   
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        Menu
-                        <i class="fas fa-bars ms-1"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav text-uppercase ms-auto py-5 py-lg-0">
-                            <li class="nav-item"><a class="nav-link text-white" href="#Sign in">Sign in</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="#Sign out">Sign out</a></li>
+                    <a class="navbar-brand" href="#!">Start Bootstrap</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -50,15 +48,11 @@
                     <div class="col-md-4 text-center row align-items-center" cz-shortcut-listen="true">
                         <div class="card bg-dark">
                             <div class="card-header">
-                                <h1 class="h3 mb-3 font-weight-normal text-white p-3">Sign in</h1>
+                                <h1 class="h3 mb-3 font-weight-normal text-white p-3">パスワード再設定</h1>
                             </div>      
                             <div class="card-body">
-                                <div class="col p-2"><input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""></div>
-                                <div class="col p-2"><input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""></div>
-                                <div class="row">
-                                    <div class="col p-3"><button class="btn btn btn-outline-warning btn-block" type="submit">Sign in</button></div>
-                                    <div class="col p-3"><button class="btn btn btn-outline-warning btn-block" type="submit">Sign up</button></div>
-                                </div> 
+                                <div class="col p-2"><input type="email" id="inputEmail" class="form-control" placeholder="メールアドレスを入力" required="" autofocus=""></div>
+                                <div class="col p-3"><button class="btn btn btn-outline-warning btn-block" type="submit">メールを送信</button></div>
                             </div> 
                         </div>
                     </div>
