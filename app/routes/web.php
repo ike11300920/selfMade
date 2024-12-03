@@ -18,6 +18,9 @@ use App\Http\Controllers\DisplayController;
 //Auth::routes();
 
 Route::get('/', [DisplayController::class, 'index']);
+Route::get('/login', [DisplayController::class, 'login'])->name('login');
+Route::get('/signup', [DisplayController::class, 'signup'])->name('signup');
+Route::post('/signup/confirm', [DisplayController::class, 'signupConfirm'])->name('signup.confirm');
 
 //Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

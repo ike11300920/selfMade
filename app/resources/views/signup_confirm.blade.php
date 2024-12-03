@@ -27,7 +27,7 @@
         <div id="app">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container">
-                    <a class="navbar-brand" href="#!">Start Bootstrap</a>
+                    <a class="navbar-brand" href="/">gadgetcon</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -41,9 +41,11 @@
             <main class="py-5">
                 <div class="row justify-content-around my-5">
                     <div class="col-md-4">
-                        <div>
-                            <img src="{{ asset('storage/ガジェコン__3_-removebg-preview.png')}}" />
-                        </div>
+                        
+                            <a href="/">
+                                <img src="{{ asset('storage/ガジェコン__3_-removebg-preview.png')}}" />
+                            </a>
+                        
                     </div>
                     <div class="col-md-4 text-center row align-items-center" cz-shortcut-listen="true">
                         <div class="card bg-dark">

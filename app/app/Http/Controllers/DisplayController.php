@@ -8,6 +8,18 @@ class DisplayController extends Controller
 {
     public function index()
     {
-        return view('password_reset');
+        return view('mein');
+    }
+    public function login()
+    {
+        return view('login');
+    }
+    public function signup()
+    {
+        return view('signup');
+    }
+    public function signupConfirm()
+    {
+        return view('signup_confirm');
     }
 }

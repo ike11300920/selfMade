@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/uuu.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     @vite(['resources/js/app.js'])
 </head>
 
@@ -27,7 +27,7 @@
         <div id="app">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container">
-                    <a class="navbar-brand" href="#!">Start Bootstrap</a>
+                    <a class="navbar-brand" href="#!">gadgetcon</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -40,12 +40,12 @@
             </nav>
             <main class="py-5">
                 <div class="row justify-content-around my-5">
-                    <div class="col-md-4">
-                        <div>
+                    <div class="col-md-4 d-flex align-items-center justify-content-center">
+                        <a href="/">
                             <img src="{{ asset('storage/ガジェコン__3_-removebg-preview.png')}}" />
-                        </div>
+                        </a>
                     </div>
-                    <div class="col-md-4 text-center row align-items-center" cz-shortcut-listen="true">
+                    <div class="col-md-4 text-center row align-items-center">
                         <div class="card bg-dark">
                             <div class="card-header">
                                 <h1 class="h3 mb-3 font-weight-normal text-white p-3">Sign in</h1>
@@ -55,7 +55,7 @@
                                 <div class="col p-2"><input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""></div>
                                 <div class="row">
                                     <div class="col p-3"><button class="btn btn btn-outline-warning btn-block" type="submit">Sign in</button></div>
-                                    <div class="col p-3"><button class="btn btn btn-outline-warning btn-block" type="submit">Sign up</button></div>
+                                    <div class="col p-3"><a class="btn btn btn-outline-warning btn-block" href="{{ route('signup') }}">Sign up</a></div>
                                 </div> 
                             </div> 
                         </div>

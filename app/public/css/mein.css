@@ -1,0 +1,19 @@
+body {
+    background-size: cover;
+  }
+#device{
+  width:100% ;
+  height:60vh ;
+  object-fit: cover;
+  background-attachment: fixed;
+}
+#logo{
+  margin-top: -40vh;
+  margin-bottom: 0px;
+}
+section{
+  margin-top:-5vh;
+}
+#myTab{
+    margin-top:30vh;   
+}
