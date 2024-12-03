@@ -1,6 +1,9 @@
 body {
     background-size: cover;
   }
+main {
+    width: 99.2%;
+  }
 #logo {
     margin-top: 5%;
   }

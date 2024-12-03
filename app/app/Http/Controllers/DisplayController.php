@@ -22,4 +22,16 @@ class DisplayController extends Controller
     {
         return view('signup_confirm');
     }
+    public function pwdRstInfo()
+    {
+        return view('password_reset_information');
+    }
+    public function pwdRst()
+    {
+        return view('password_reset');
+    }
+    public function pwdRstDone()
+    {
+        return view('password_reset_done');
+    }
 }

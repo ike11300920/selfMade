@@ -1,42 +1,13 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.layout')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('stylesheet')
+<!-- Styles -->
+<link href="{{ asset('css/mein.css') }}" rel="stylesheet">
+@endsection
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'ガジェコン') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/mein.css') }}" rel="stylesheet">
-    @vite(['resources/js/app.js'])
-</head>
-
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#!">gadgetcon</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('login') }}">ログイン</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+@section('content')
         <header class="masthead">
-                <img id="device" src="{{ asset('storage/samsung-memory-rMSYJWOIgMw-unsplash.jpg')}}" class="" alt="">
+                <img id="device" src="{{ asset('storage/samsung-samsung-.jpg')}}" class="" alt="">
                 <a href="/">
                     <img id="logo" src="{{ asset('storage/ガジェコン__3_-removebg-preview.png')}}"class="w-25 mx-auto d-block align-middle" />
                 </a>
@@ -246,9 +217,4 @@
         </div>
     </div>
 </section>
-
-    
-
-</body>
-
-</html>
+@endsection
