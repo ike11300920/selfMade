@@ -5,14 +5,32 @@
 <link href="{{ asset('css/mein.css') }}" rel="stylesheet">
 @endsection
 
+@section('background')
+class="bg-dark"
+@endsection
+
 @section('content')
-        <header class="masthead">
-                <img id="device" src="{{ asset('storage/samsung-samsung-.jpg')}}" class="" alt="">
+        <header class="masthead bg-dark">
+                <video id="device" src="{{ asset('storage/33093-395456662_small.mp4')}}" loop="" autoplay="" muted=""  width="100%" class="bgv"></video>
                 <a href="/">
                     <img id="logo" src="{{ asset('storage/ガジェコン__3_-removebg-preview.png')}}"class="w-25 mx-auto d-block align-middle" />
                 </a>
 
-                <ul class="nav nav-tabs bottom-0 justify-content-center nav-pills" id="myTab" role="tablist">
+                <a href="{{ route('forums.create') }}" id="add-forum" class="btn btn-warning text-white">
+                    <span class="badge badge-pill badge-secondary text-primary">New</span>
+                    >新規フォーラム開設
+                </a>            
+
+        </header>
+
+        <form class="w-25 mx-auto" id="search">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="フォーラムタイトル" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-warning" id="btnNavbarSearch" type="button"><i class="fas fa-search">検索</i></button>
+            </div>
+        </form>
+
+                <ul class="nav nav-tabs bottom-0 justify-content-center nav-pills bg-dark" id="myTab" role="tablist">
                     <li class="nav-item bottom-0" role="presentation">
                     <button class="nav-link active bottom-0" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">新着フォーラム</button>
                     </li>
@@ -26,18 +44,15 @@
                         <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">参加フォーラム</button>
                     </li>
                 </ul>
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
-                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
-                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
-                <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
+              <div class="tab-content bg-dark" id="myTabContent">
+                <div class="tab-pane fade text-dark show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
+                <div class="tab-pane fade text-dark" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+                <div class="tab-pane fade text-dark" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
+                <div class="tab-pane fade text-dark" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
               </div>
 
-        </header>
-
-        
 <!-- Section-->
-<section class="py-5">
+<section class="py-5 bg-dark">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-5">

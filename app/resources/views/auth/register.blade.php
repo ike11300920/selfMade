@@ -7,10 +7,12 @@
 @endsection
 
 @section('background')
-background="{{ asset('storage/samsung-samsung-.jpg')}}"
+class="overflow-hidden"
 @endsection
 
 @section('content')
+
+<video id="device" src="{{ asset('storage/33093-395456662_small.mp4')}}" loop="" autoplay="" muted=""  width="100%" class="bgv"></video>
     <main class="py-5">
         <div class="row justify-content-around my-5">
             <div class="col-md-4 d-flex align-items-center justify-content-center" id="logo">

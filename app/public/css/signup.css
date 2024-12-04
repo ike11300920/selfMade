@@ -5,8 +5,15 @@ main {
     width: 99.2%;
   }
 #logo {
-    margin-top: 5%;
+    margin-top: -78%;
   }
 #form {
-    margin-top: 6%;
+    margin-top: -78%;
+  }
+#title{
+    letter-spacing: .5rem;
+  }
+#navbarSupportedContent img{
+    width: 40px;
+    height: 40px;
   }

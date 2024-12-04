@@ -9,3 +9,10 @@ body {
 #logo{
   margin-top: -55vh;
 }
+#title{
+  letter-spacing: .5rem;
+}
+#navbarSupportedContent img{
+  width: 40px;
+  height: 40px;
+}

@@ -25,7 +25,9 @@ Route::post('/signup/confirm', [DisplayController::class, 'signupConfirm'])->nam
 Route::get('/password/reset/information', [DisplayController::class, 'pwdRstInfo'])->name('pwd.rst.info');
 Route::post('/password/reset', [DisplayController::class, 'pwdRst'])->name('pwd.rst');
 Route::post('/password/reset/done', [DisplayController::class, 'pwdRstDone'])->name('pwd.rst.done');
-
+Route::get('/mypage', [DisplayController::class, 'mypage'])->name('mypage');
+Route::get('/forums/create', [DisplayController::class, 'forumsCreateForm'])->name('forums.create');
+Route::post('/forums/create', [RegistrationController::class, 'forumsCreate'])->name('forums.create');
 
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {});

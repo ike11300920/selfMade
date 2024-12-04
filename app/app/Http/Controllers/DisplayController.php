@@ -34,4 +34,12 @@ class DisplayController extends Controller
     {
         return view('password_reset_done');
     }
+    public function mypage()
+    {
+        return view('mypage');
+    }
+    public function forumsCreateForm()
+    {
+        return view('forums_create');
+    }
 }
