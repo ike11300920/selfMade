@@ -3,11 +3,11 @@
 @section('stylesheet')
 <!-- Styles -->
 <link href="{{ asset('css/forum_create.css') }}" rel="stylesheet">
-<script src="{{ asset('js/forum_create.js') }}" defer></script>
+
 @endsection
 
 @section('background')
-class="overflow-hidden"
+class="bg-dark"
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@ class="overflow-hidden"
                             </div>
                             @endif
                         </div>
-                        <form action="{{ route('forums.create') }}" method="post">
+                        <form action="{{ route('forums.create') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <label for='comment' class='mt-2 text-white'>タイトル</label>
                             <input class='form-control' name='title'>{{ old('comment') }}</textarea>
@@ -40,16 +40,11 @@ class="overflow-hidden"
                             <textarea class='form-control' name='discussion'>{{ old('comment') }}</textarea>
 
                             <label for='comment' class='mt-2 text-white'>画像</label>
-                            <div class="imagePreview"></div>
-                            <div class="input-group">
-                                <label class="input-group-btn">
-                                    <span class="btn btn-primary">
-                                        ファイルを選択<input type="file" style="display:none" class="uploadFile">
-                                    </span>
-                                </label>
-                                <input type="text" class="form-control" readonly="" name='image'>
-                            </div>
-                            
+                            <!-- プレビュー表示用のdivタグ -->
+                            <div id="preview"></div>
+                            <!-- ファイルインプットタグ -->
+                            <input type="file" class='text-white' name="image" data-target-id="preview" data-classes="hoge fuga" onchange="previewer.setImgPreview(event);">
+
                             <div class='row justify-content-center'>
                                 <button type='submit' class='btn btn-primary w-25 mt-3'>登録</button>
                             </div>
@@ -60,4 +55,9 @@ class="overflow-hidden"
             </div>
         </div>
     </main>
+    <script src="{{ asset('js/forum_create.js') }}"></script>
+    <script>
+        // インスタンス化
+        const previewer = new ImgPreviewer();
+    </script>
 @endsection

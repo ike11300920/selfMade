@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Forum;
 
 class DisplayController extends Controller
 {
-    public function index()
+    public function index(Forum $forum)
     {
-        return view('mein');
+        $forum = new Forum;
+        $forum = $forum->paginate(8);
+        //dd($forum);
+        return view('mein', ['forums' => $forum,]);
     }
     public function login()
     {
