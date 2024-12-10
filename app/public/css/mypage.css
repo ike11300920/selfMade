@@ -1,18 +1,51 @@
 body {
-    background-size: cover;
-  }
-#device{
-  width:100% ;
-  height:60vh ;
-  object-fit: cover;
+  background-size: cover;
 }
-#logo{
-  margin-top: -55vh;
+main {
+  margin-top:-23%;
+  width: 99.2%;
 }
 #title{
   letter-spacing: .5rem;
 }
+#device{
+  width:100% ;
+  height:56vh ;
+  object-fit: cover;
+  background-attachment: fixed;
+}
 #navbarSupportedContent img{
   width: 40px;
   height: 40px;
+}
+#title-img{
+  width: 10vw;
+}
+nav{
+  background-color: rgba(33, 37, 41,0.8);
+}
+#forum-img{
+  height: 35vh;
+}
+#forum-img img{
+  width: 200px;
+  height: 200px;
+  margin-left: 400px;
+  object-fit: cover;
+}
+#interest,#edit,form,input{
+  position : relative ; 
+}
+#icon{
+  margin-right: 40px;
+}
+#user-name{
+  margin-right: 10px;
+}
+.vr{
+  color: #fff;
+  margin-right: 35px;
+}
+#name{
+  margin-top: -80px;
 }

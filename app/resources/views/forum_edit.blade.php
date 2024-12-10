@@ -17,7 +17,7 @@ class="bg-dark"
         <div class="col-md-7 mx-auto">
             <div class="card bg-dark bg-opacity-50">
                 <div class="card-header">
-                    <h4 class='text-center text-white'>新規フォーラム開設
+                    <h4 class='text-center text-white'>フォーラム編集
                     </h1>
                 </div>
                 <div class="card-body">
@@ -31,13 +31,13 @@ class="bg-dark"
                             </div>
                             @endif
                         </div>
-                        <form action="{{ route('forums.create') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('forum.edit', ['forum' => $forum['id']]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <label for='comment' class='mt-2 text-white'>タイトル</label>
-                            <input class='form-control' name='title'>{{ old('comment') }}</textarea>
+                            <input class='form-control' name='title' value="{{$forum['title']}}">{{ old('title') }}</textarea>
                             
                             <label for='comment' class='mt-2 text-white'>協議内容</label>
-                            <textarea class='form-control form-control-lg' name='discussion'>{{ old('comment') }}</textarea>
+                            <textarea class='form-control form-control-lg' name='discussion'>{{$forum['discussion']}}</textarea>
 
                             <label for='comment' class='mt-2 text-white'>画像</label>
                             <!-- プレビュー表示用のdivタグ -->

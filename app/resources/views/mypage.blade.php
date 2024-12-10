@@ -5,51 +5,61 @@
 <link href="{{ asset('css/mypage.css') }}" rel="stylesheet">
 @endsection
 
+@section('background')
+class="bg-dark"
+@endsection
+
 @section('content')
-        <header class="masthead">
-                <img id="device" src="{{ asset('storage/samsung-memory-rMSYJWOIgMw-unsplash.jpg')}}" class="" alt="">
-                <img id="logo" src="{{ asset('storage/ガジェコン__3_-removebg-preview.png')}}"class="w-25 mx-auto d-block" />
-        </header>
-        
-        <mein>
-            <div class="bg-dark">
-                <div class="container mt-5 mb-0 p-5 d-flex justify-content-center bg-dark"> 
-                    <div class="card p-4 w-100 bg-dark text-white fs-4"> 
-                        <div class=" image d-flex flex-column justify-content-center align-items-center"> 
-                            <button class="btn btn-secondary"> 
-                                <img src="{{ asset('storage/S__151216133.jpg')}}" height="300" width="300"/>
-                            </button> 
-                            <span class="name mt-3">池本知茉</span> 
-                            <span class="idd">@ikemoto</span> 
-                            <div class="d-flex flex-row justify-content-center align-items-center gap-2"> 
-                                <span class="idd1">職業：ああああ。 
-                                    <span><i class="fa fa-copy"></i></span>
-                                </span>
-                            </div> 
-                            <div class="d-flex flex-row justify-content-center align-items-center mt-3"> 
-                                <span class="number">自己紹介： 
-                                    <span class="follow">あああああああ。
-                                    </span>
-                                </span> 
-                            </div> 
-                            <div class=" d-flex mt-2"> 
-                                <button class="btn1 btn-dark">Edit Profile</button> 
-                            </div> 
-                            <div class="text mt-3"> 
-                                <span>Eleanor Pena is a creator of minimalistic x bold graphics and digital artwork.<br><br> Artist/ Creative Director by Day #NFT minting@ with FND night. </span> 
-                            </div> 
-                            <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> 
-                                <span><i class="fa fa-twitter"></i></span> 
-                                <span><i class="fa fa-facebook-f"></i></span> 
-                                <span><i class="fa fa-instagram"></i></span> 
-                                <span><i class="fa fa-linkedin"></i></span> 
-                            </div> 
-                            <div class=" px-2 rounded mt-4 date "> 
-                                <span class="join">Joined May,2021</span> 
-                            </div> 
-                        </div> 
+
+<video id="device" src="{{ asset('storage/33093-395456662_small.mp4')}}" loop="" autoplay="" muted=""  width="100%" class="bgv"></video>
+                    <main>
+                        <!-- Page Content-->
+                        <div class="container px-4 px-lg-5">
+                            <!-- Heading Row-->
+                            <div class="row gx-4 gx-lg-5 align-items-center my-5">
+
+                                <div class="col-lg-7" id="forum-img">
+                                
+                                    @if( Auth::user()->image ==null)
+                                        <img id="icon" class="img-profile rounded-circle" src="{{ asset('storage/kkrn_icon_user_4.png')}}" alt="..." />
+                                    @else
+                                        <img id="icon" class="img-profile rounded-circle" src="{{ asset( 'storage/' . Auth::user()->image ) }}" alt="...">
+                                    @endif
+
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <h1 class="font-weight-light text-white" id="name">{{ $profile['name'] }}</h1>
+                                    <p class="text-white">職業：{{ $profile['job'] }}</p>
+                                    <p class="text-white">自己紹介：{{ $profile['introduction'] }}</p>
+                                    <div id="interest" class="btn btn-outline-warning">★
+                                    </div>
+                                    <a id="edit" class="btn btn-outline-primary" href="{{ route('mypage.setting') }}">編集ページへ</a>
+                                </div>
+
+                            </div>
+                            <!-- Call to Action-->
+                            <div id="comment" class="card text-white bg-secondary my-5 py-4 text-center btn btn-light fs-5">
+                                <div class="card-body">使用デバイス</div>
+                            </div>
+                            <!-- Content Row-->
+                            
+                            <div class="row gx-4 gx-lg-5">
+                                @foreach ($devices as $device)
+                                <div class="col-md-4 mb-5">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h2 class="card-title">{{ $device['name'] }}</h2>
+                                            <p class="card-text">【商品URL:】{{ $device['url'] }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </mein>
+        </div>
+    </main>
 @endsection

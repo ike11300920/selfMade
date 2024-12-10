@@ -22,24 +22,27 @@
 </head>
 
     <body @yield('background')>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a id="title" class="navbar-brand" href="/">gadgetcon</a>
-
-                <!--<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                    <img class="img-profile rounded-circle"src="img/undraw_profile.svg">
-                </a>-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container" id="navnav">
+                <a id="title" class="navbar-brand" href="/"><img id="title-img" src="{{ asset('storage/gadgetcon10-removebg-preview.png')}}"/></a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         @if(Auth::check())
-                        <a href="{{ route('mypage') }}" class="nav-link text-white fs-5">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">< {{ Auth::user()->name }}</span>
-                            <img class="img-profile rounded-circle" src="{{ asset('storage/S__151216133.jpg')}}">
-                        </a>
-                        /
-                        <a href="#" id="logout" class="mt-navbar-item btn btn-outline-warning">ログアウト</a>
+                        
+                        
+                        <a id="user-name" class="text-warning d-flex align-items-center fs-5" href="{{ route('mypage') }}">> {{ Auth::user()->name }}</a>
+                        
+                       
+                        @if( Auth::user()->image ==null)
+                            <img id="icon" class="img-profile rounded-circle" src="{{ asset('storage/kkrn_icon_user_4.png')}}" alt="..." />
+                        @else
+                            <img id="icon" class="img-profile rounded-circle" src="{{ asset( 'storage/' . Auth::user()->image ) }}" alt="...">
+                        @endif
+
+                        <div class="vr"></div>
+
+                        <a href="#" id="logout" class="mt-navbar-item btn btn-outline-secondary">ログアウト</a>
                         <form id="logout-form" action="{{ route('logout')}}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -58,4 +61,9 @@
         </nav>
     @yield('content')
 </body>
+
+<footer class="py-5 bg-warning">
+    <div class="container"><p class="m-0 text-center text-dark">Copyright &copy; Gadgetcon 2024</p></div>
+</footer>
+
 </html>

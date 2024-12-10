@@ -2,53 +2,114 @@
 
 @section('stylesheet')
 <!-- Styles -->
-<link href="{{ asset('css/login.css') }}" rel="stylesheet">
+<link href="{{ asset('css/forums.css') }}" rel="stylesheet">
 @endsection
 
 @section('background')
-class="overflow-hidden"
+class="bg-dark"
 @endsection
 
 @section('content')
 
 <video id="device" src="{{ asset('storage/33093-395456662_small.mp4')}}" loop="" autoplay="" muted=""  width="100%" class="bgv"></video>
-    <main>
-        <div class="col-md-7 mx-auto">
-            <div class="card bg-dark">
-                <div class="card-header">
-                    <h4 class='text-center text-white'>新規フォーラム開設
-                    </h1>
-                </div>
-                <div class="card-body">
-                    <div class="card-body">
-                        <div class="panel-body">
-                            @if($errors->any())
-                            <div class="alert alert-danger">
-                                @foreach($errors->all() as $message)
-                                <li>{{$message}}</li>
+                    <main>
+                        <!-- Page Content-->
+                        <div class="container px-4 px-lg-5" id="content">
+                            <!-- Heading Row-->
+                            <div class="row gx-4 gx-lg-5 align-items-center my-5">
+                                <div class="col-lg-7" id="forum-img">
+                                    @if($forum['image']==null)
+                                        <img class="card-img-top" src="{{ asset('storage/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg')}}" alt="..." />
+                                    @else
+                                        <img class="img-fluid rounded mb-4 mb-lg-0" src="{{ asset( 'storage/' . $forum['image']) }}" alt="..." /></div>
+                                    @endif
+                                <div class="col-lg-5">
+                                    <h1 class="font-weight-light text-white">{{ $forum->title }}</h1>
+                                    <p class="text-white">{{ $forum->discussion }}</p>
+                                    <div id="interest" class="btn btn-outline-warning">★気になる</div>
+                                    <a id="edit" class="btn btn-outline-primary" href="{{ route('forum.edit', ['forum' => $forum['id']]) }}">編集ページへ</a>
+                                </div>
+                            </div>
+                            <!-- Call to Action-->
+                            <div id="comment" class="card text-white bg-secondary my-5 py-4 text-center btn btn-light fs-5" data-bs-toggle="modal" data-bs-target="#myModal" href="#">
+                                <div class="card-body">コメントを返信</div>
+                            </div>
+
+                            <div id="app" class="container">
+                                <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">コメントを返信</h5>
+                                            </div>
+                                            <form action="{{ route('comment',['forum' => $forum['id']]) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+
+                                                <p>コメント</p>
+                                                <textarea class='form-control' name='comment'></textarea>
+                                            
+                                                <button type='submit' class="btn btn-outline-primary">追加</button>
+                                            </form>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-outline-dark" data-bs-dismiss="modal">閉じる</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Content Row-->
+                                @foreach ($comments as $comment)
+                                @if($comment['parent_comment_id']==null)
+                                <div class="col-md-4 mb-5 w-100">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h2 class="card-title">{{ $comment['comment'] }}</h2>
+                                            <p class="card-text">{{ $comment['comment'] }}</p>
+                                        </div>
+                                        <div class="card-footer"><a class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#myModal2" href="#">返信する</a></div>
+                                    </div>
+
+                                    <div id="app" class="container">
+                                        <div id="myModal2" class="modal fade" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">返信</h5>
+                                                    </div>
+                                                    <form action="{{ route('comment',['forum' => $forum['id']]) }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+        
+                                                        <p>コメント</p>
+                                                        <textarea class='form-control' name='comment'></textarea>
+                                                        <input type="hidden" class='form-control' name='comment_id' value="{{ $comment['id'] }}"></input>
+                                                    
+                                                        <button type='submit' class="btn btn-outline-primary">追加</button>
+                                                    </form>
+                                                    <div class="modal-footer">
+                                                        <a class="btn btn-outline-dark" data-bs-dismiss="modal">閉じる</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+
+                                    @foreach ($comments as $child)
+                                    @if($comment['id']==$child['parent_comment_id'])
+                                    <div class="card h-75 w-75 mr-0">
+                                        <div class="card-body">
+                                            <h2 class="card-title">↪</h2>
+                                            <p class="card-text">{{ $child['comment'] }}</p>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @endforeach
+
+                                </div>
                                 @endforeach
                             </div>
-                            @endif
                         </div>
-                        <form action="{{ route('forums.create') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <label for='comment' class='mt-2 text-white'>タイトル</label>
-                            <input class='form-control' name='title'>{{ old('comment') }}</textarea>
-                            
-                            <label for='comment' class='mt-2 text-white'>協議内容</label>
-                            <textarea class='form-control' name='discussion'>{{ old('comment') }}</textarea>
-
-                            <label for='comment' class='mt-2 text-white'>画像</label>
-                            <!-- プレビュー表示用のdivタグ -->
-                            <div id="preview"></div>
-                            <!-- ファイルインプットタグ -->
-                            <input type="file" class='text-white' name="image" data-target-id="preview" data-classes="hoge fuga" onchange="previewer.setImgPreview(event);">
-
-                            <div class='row justify-content-center'>
-                                <button type='submit' class='btn btn-primary w-25 mt-3'>登録</button>
-                            </div>
-
-                        </form>
                     </div>
                 </div>
             </div>

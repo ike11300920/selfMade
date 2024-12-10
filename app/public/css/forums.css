@@ -10,19 +10,13 @@ main {
   }
   #device{
     width:100% ;
-    height:100% ;
+    height:56vh ;
     object-fit: cover;
+    background-attachment: fixed;
   }
   #navbarSupportedContent img{
     width: 40px;
     height: 40px;
-  }
-  #preview{
-    width: 450px;
-    height: 230px;
-    overflow: hidden;
-    padding: 0;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .5), 0 1px 2px -1px rgba(0, 0, 0, .5);
   }
   #title-img{
     width: 10vw;
@@ -30,8 +24,16 @@ main {
   nav{
     background-color: rgba(33, 37, 41,0.8);
   }
-  textarea{
-    line-height: 100;
+  #forum-img{
+    height: 35vh;
+  }
+  #forum-img img{
+    height: 300px;
+    width: 600px;
+    object-fit: cover;
+  }
+  #interest,#edit{
+    position : relative ; 
   }
   #icon{
     margin-right: 40px;
@@ -42,4 +44,10 @@ main {
   .vr{
     color: #fff;
     margin-right: 35px;
+  }
+  #content{
+    margin-top: 53vh;
+  }
+  #comment{
+    margin-top: 300px;
   }

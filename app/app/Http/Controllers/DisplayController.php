@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Forum;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Device;
+use App\Models\Comment;
 
 class DisplayController extends Controller
 {
-    public function index(Forum $forum)
+    public function index()
     {
         $forum = new Forum;
-        $forum = $forum->paginate(8);
-        //dd($forum);
+        $forum = $forum->latest('updated_at')->paginate(8);
+        //ddd($forum);
         return view('mein', ['forums' => $forum,]);
     }
     public function login()
@@ -40,10 +43,36 @@ class DisplayController extends Controller
     }
     public function mypage()
     {
-        return view('mypage');
+        $profile = Auth::user();
+        //ddd($profile);
+
+        $all_device = new Device;
+        $device = $all_device->all()->toArray();
+        return view('mypage', ['profile' => $profile, 'devices' => $device,]);
+    }
+    public function mypageSettingForm()
+    {
+        $profile = Auth::user();
+        //ddd($profile);
+
+        $type = new Device;
+        $device = $type->all()->toArray();
+        //ddd($device);
+        return view('mypage_setting', ['profile' => $profile, 'devices' => $device,]);
     }
     public function forumsCreateForm()
     {
         return view('forums_create');
+    }
+    public function forumDetail(Forum $forum)
+    {
+        $all_comment = new Comment;
+        $comment = $all_comment->all()->toArray();
+        //ddd($comment);
+        return view('forums', ['forum' => $forum, 'comments' => $comment]);
+    }
+    public function forumEditForm(Forum $forum)
+    {
+        return view('forum_edit', ['forum' => $forum,]);
     }
 }
