@@ -32,6 +32,8 @@ Route::post('/password/reset/done', [DisplayController::class, 'pwdRstDone'])->n
 //フォーラム詳細
 Route::get('/forums/{forum}/detail', [DisplayController::class, 'forumDetail'])->name('forum.detail');
 
+Route::post('/like/{postId}', [RegistrationController::class, 'store']);
+
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 

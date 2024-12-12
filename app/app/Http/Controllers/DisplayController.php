@@ -7,15 +7,35 @@ use App\Models\Forum;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Device;
 use App\Models\Comment;
+use App\Models\Interest;
 
 class DisplayController extends Controller
 {
     public function index()
     {
         $forum = new Forum;
-        $forum = $forum->latest('updated_at')->paginate(8);
+
+        $interest = new Interest;
+
+        $forums = $forum->latest('updated_at')->paginate(8);
         //ddd($forum);
-        return view('mein', ['forums' => $forum,]);
+
+        $entry = $forum->join('comments', 'forums.id', 'comments.forum_id')
+            ->whereNotNull('comments.forum_id')
+            ->where('comments.user_id', '=', Auth::id())
+            ->select('comments.forum_id', 'forums.id', 'forums.title', 'forums.image', 'forums.discussion', 'forums.created_at', 'forums.updated_at')
+            ->groupBy('comments.forum_id')
+            ->get();
+
+        //$forum = $forum->id->get();
+        //ddd($forum);
+
+        //既に「いいね」しているか判定
+        //$judge = $interest->where('user_id', '=', Auth::id())
+        //    ->where('forum_id', '=', 'forum.id')
+        //    ->get();
+        //ddd($judge);
+        return view('mein', ['forums' => $forums, 'entry' => $entry]);
     }
     public function login()
     {
@@ -67,7 +87,7 @@ class DisplayController extends Controller
     public function forumDetail(Forum $forum)
     {
         $all_comment = new Comment;
-        $comment = $all_comment->all()->toArray();
+        $comment = $all_comment->where('comments.forum_id', '=', $forum['id'])->get();
         //ddd($comment);
         return view('forums', ['forum' => $forum, 'comments' => $comment]);
     }

@@ -60,18 +60,21 @@ class="bg-dark"
 
                             <!-- Content Row-->
                                 @foreach ($comments as $comment)
-                                @if($comment['parent_comment_id']==null)
+                                    
                                 <div class="col-md-4 mb-5 w-100">
+                                    
+                                    @if($comment['parent_comment_id']==null)
+
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <h2 class="card-title">{{ $comment['comment'] }}</h2>
                                             <p class="card-text">{{ $comment['comment'] }}</p>
                                         </div>
-                                        <div class="card-footer"><a class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#myModal2" href="#">返信する</a></div>
+                                        <div class="card-footer"><a class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#{{ $comment['id'] }}" href="#">返信する</a></div>
                                     </div>
 
                                     <div id="app" class="container">
-                                        <div id="myModal2" class="modal fade" tabindex="-1" role="dialog">
+                                        <div id="{{ $comment['id'] }}" class="modal fade" tabindex="-1" role="dialog">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

@@ -4,6 +4,7 @@
 <!-- Styles -->
 <link href="{{ asset('css/mein.css') }}" rel="stylesheet">
 <script src="{{ asset('js/mein.js') }}" defer></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('background')
@@ -48,7 +49,6 @@ class="bg-dark"
                 </ul>
 
 <!-- Section-->
-
 <section class="py-5 bg-dark">
     <div class="container px-4 px-lg-5 mt-5">
 
@@ -58,10 +58,22 @@ class="bg-dark"
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
           
             @foreach ($forums as $forum)
+
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Sale badge-->
-                    <div class="btn btn-outline-warning position-absolute" style="top: 0.5rem; right: 0.5rem; height: 2.2rem;">★</div>
+
+                    <!-- お気に入り -->
+
+                    @if (!$forum->isLikedBy(Auth::user()))
+                    <p>a</p>
+                    @else
+                    <p>b</p>
+                    @endif
+
+                    <button class="btn btn-outline-warning position-absolute"  data-bs-toggle="button" style="top: 0.5rem; right: 0.5rem; height: 2.2rem;" onclick="like({{ $forum['id'] }})">★</button>
+
+                    <!--<div class="btn btn-outline-warning position-absolute" style="top: 0.5rem; right: 0.5rem; height: 2.2rem;">★</div>-->
                     <!-- Product image-->
                     @if($forum['image']==null)
                         <img class="card-img-top" src="{{ asset('storage/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg')}}" alt="..." />
@@ -127,7 +139,36 @@ class="bg-dark"
       </div>
 
       <div role="tabpanel" class="tab-pane active fade" id="entryForum">
-        <p class="text-white">参加済み</p>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          
+          @foreach ($entry as $ent)
+          <div class="col mb-5">
+              <div class="card h-100">
+                  <!-- Sale badge-->
+                  <div class="btn btn-outline-warning position-absolute" style="top: 0.5rem; right: 0.5rem; height: 2.2rem;">★</div>
+                  <!-- Product image-->
+                  @if($ent['image']==null)
+                      <img class="card-img-top" src="{{ asset('storage/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg')}}" alt="..." />
+                  @else
+                      <img class="card-img-top" src="{{ asset( 'storage/' . $ent['image']) }}" alt="..." />
+                  @endif
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder text-truncate">{{ $ent['title'] }}</h5>
+                          <!-- Product price-->
+                          <p id="mien-text">{{ $ent['discussion'] }}</p>
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ route('forum.detail', ['forum' => $forum['id']]) }}">詳細</a></div>
+                  </div>
+              </div>
+          </div>
+          @endforeach
+      </div>
       </div>
 
     </div>
