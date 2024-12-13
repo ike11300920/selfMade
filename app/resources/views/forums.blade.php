@@ -25,7 +25,7 @@ class="bg-dark"
                                     @endif
                                 <div class="col-lg-5">
                                     <h1 class="font-weight-light text-white">{{ $forum->title }}</h1>
-                                    <p class="text-white">{{ $forum->discussion }}</p>
+                                    <p class="text-white overflow-auto">{{ $forum->discussion }}</p>
                                     <div id="interest" class="btn btn-outline-warning">★気になる</div>
                                     <a id="edit" class="btn btn-outline-primary" href="{{ route('forum.edit', ['forum' => $forum['id']]) }}">編集ページへ</a>
                                 </div>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DisplayController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Auth;
+use App\Events\MyEvent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +19,8 @@ use Illuminate\Support\Facades\Auth;
 //Route::get('/', function () {return view('home');});
 //Auth::routes();
 
-//メイン表示
-Route::get('/', [DisplayController::class, 'index']);
+
+
 //ログイン
 Route::get('/login', [DisplayController::class, 'login'])->name('login');
 //新規アカウント登録
@@ -36,7 +37,8 @@ Route::post('/like/{postId}', [RegistrationController::class, 'store']);
 
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
-
+    //メイン表示
+    Route::get('/', [DisplayController::class, 'index'])->name('/');
     //マイページ表示
     Route::get('/mypage', [DisplayController::class, 'mypage'])->name('mypage');
     //マイページ編集
@@ -53,4 +55,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     //フォーラム詳細から返信コメント追加
     Route::post('/forums/{forum}/detail', [RegistrationController::class, 'forumDetailComment'])->name('comment');
+});
+
+
+Route::get('/test', function () {
+    event(new MyEvent('Hello World'));
+});
+Route::get('/i', function () {
+    return view('welcome', ['key' => env('PUSHER_APP_KEY'), 'cluster' => env('PUSHER_APP_CLUSTER')]);
 });

@@ -27,8 +27,10 @@ class="bg-dark"
 
         <form class="w-25 mx-auto" id="search">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="フォーラムタイトル" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-warning" id="btnNavbarSearch" type="button"><i class="fas fa-search">検索</i></button>
+                <input class="form-control" name="search" type="text" placeholder="フォーラムタイトル" aria-label="Search for..." aria-describedby="btnNavbarSearch"  value="{{ $search }}"/>
+                <a href="{{route('/')}}">
+                <button class="btn btn-warning" id="btnNavbarSearch" type="submit"><i class="fas fa-search">検索</i></button>
+                </a>
             </div>
         </form>
 
@@ -66,12 +68,10 @@ class="bg-dark"
                     <!-- お気に入り -->
 
                     @if (!$forum->isLikedBy(Auth::user()))
-                    <p>a</p>
+                    <input id="interestBtn" class="form-check-input position-absolute" type="checkbox" style="top: 0.5rem; right: 0.5rem; height: 2.2rem; width: 2.2rem;" onclick="like({{ $forum['id'] }})">
                     @else
-                    <p>b</p>
+                    <input id="interestBtn" class="form-check-input position-absolute active" type="checkbox" style="top: 0.5rem; right: 0.5rem; height: 2.2rem; width: 2.2rem;" onclick="like({{ $forum['id'] }})" checked>
                     @endif
-
-                    <button class="btn btn-outline-warning position-absolute"  data-bs-toggle="button" style="top: 0.5rem; right: 0.5rem; height: 2.2rem;" onclick="like({{ $forum['id'] }})">★</button>
 
                     <!--<div class="btn btn-outline-warning position-absolute" style="top: 0.5rem; right: 0.5rem; height: 2.2rem;">★</div>-->
                     <!-- Product image-->
@@ -100,7 +100,46 @@ class="bg-dark"
       </div>
 
       <div role="tabpanel" class="tab-pane active fade" id="interest">
-        <p class="text-white">お気に入り</p>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          
+          @foreach ($myInterests as $myInterest)
+
+          <div class="col mb-5">
+              <div class="card h-100">
+                  <!-- Sale badge-->
+
+                  <!-- お気に入り -->
+
+                  @if (!$myInterest->isLikedBy(Auth::user()))
+                  <input id="interestBtn" class="form-check-input position-absolute" type="checkbox" style="top: 0.5rem; right: 0.5rem; height: 2.2rem; width: 2.2rem;" onclick="like({{ $myInterest['id'] }})">
+                  @else
+                  <input id="interestBtn" class="form-check-input position-absolute active" type="checkbox" style="top: 0.5rem; right: 0.5rem; height: 2.2rem; width: 2.2rem;" onclick="like({{ $myInterest['id'] }})" checked>
+                  @endif
+
+                  <!--<div class="btn btn-outline-warning position-absolute" style="top: 0.5rem; right: 0.5rem; height: 2.2rem;">★</div>-->
+                  <!-- Product image-->
+                  @if($myInterest['image']==null)
+                      <img class="card-img-top" src="{{ asset('storage/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg')}}" alt="..." />
+                  @else
+                      <img class="card-img-top" src="{{ asset( 'storage/' . $myInterest['image']) }}" alt="..." />
+                  @endif
+                  <!-- Product details-->
+                  <div class="card-body p-4">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder text-truncate">{{ $myInterest['title'] }}</h5>
+                          <!-- Product price-->
+                          <p id="mien-text">{{ $myInterest['discussion'] }}</p>
+                      </div>
+                  </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ route('forum.detail', ['forum' => $myInterest['id']]) }}">詳細</a></div>
+                  </div>
+              </div>
+          </div>
+          @endforeach
+      </div>
       </div>
 
       <div role="tabpanel" class="tab-pane active fade" id="myForum">
@@ -111,7 +150,11 @@ class="bg-dark"
           <div class="col mb-5">
               <div class="card h-100">
                   <!-- Sale badge-->
-                  <div class="btn btn-outline-warning position-absolute" style="top: 0.5rem; right: 0.5rem; height: 2.2rem;">★</div>
+                  @if (!$forum->isLikedBy(Auth::user()))
+                  <input id="interestBtn" class="form-check-input position-absolute" type="checkbox" style="top: 0.5rem; right: 0.5rem; height: 2.2rem; width: 2.2rem;" onclick="like({{ $forum['id'] }})">
+                  @else
+                  <input id="interestBtn" class="form-check-input position-absolute active" type="checkbox" style="top: 0.5rem; right: 0.5rem; height: 2.2rem; width: 2.2rem;" onclick="like({{ $forum['id'] }})" checked>
+                  @endif
                   <!-- Product image-->
                   @if($forum['image']==null)
                       <img class="card-img-top" src="{{ asset('storage/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg')}}" alt="..." />
@@ -145,7 +188,11 @@ class="bg-dark"
           <div class="col mb-5">
               <div class="card h-100">
                   <!-- Sale badge-->
-                  <div class="btn btn-outline-warning position-absolute" style="top: 0.5rem; right: 0.5rem; height: 2.2rem;">★</div>
+                  @if (!$ent->isLikedBy(Auth::user()))
+                  <input id="interestBtn" class="form-check-input position-absolute" type="checkbox" style="top: 0.5rem; right: 0.5rem; height: 2.2rem; width: 2.2rem;" onclick="like({{ $ent['id'] }})">
+                  @else
+                  <input id="interestBtn" class="form-check-input position-absolute active" type="checkbox" style="top: 0.5rem; right: 0.5rem; height: 2.2rem; width: 2.2rem;" onclick="like({{ $ent['id'] }})" checked>
+                  @endif
                   <!-- Product image-->
                   @if($ent['image']==null)
                       <img class="card-img-top" src="{{ asset('storage/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg')}}" alt="..." />
@@ -163,7 +210,7 @@ class="bg-dark"
                   </div>
                   <!-- Product actions-->
                   <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ route('forum.detail', ['forum' => $forum['id']]) }}">詳細</a></div>
+                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ route('forum.detail', ['forum' => $ent['id']]) }}">詳細</a></div>
                   </div>
               </div>
           </div>

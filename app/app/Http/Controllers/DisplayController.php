@@ -11,21 +11,38 @@ use App\Models\Interest;
 
 class DisplayController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $forum = new Forum;
 
-        $interest = new Interest;
-
+        //新着フォーラム
         $forums = $forum->latest('updated_at')->paginate(8);
         //ddd($forum);
 
+        //参加済みフォーラム
         $entry = $forum->join('comments', 'forums.id', 'comments.forum_id')
             ->whereNotNull('comments.forum_id')
             ->where('comments.user_id', '=', Auth::id())
             ->select('comments.forum_id', 'forums.id', 'forums.title', 'forums.image', 'forums.discussion', 'forums.created_at', 'forums.updated_at')
             ->groupBy('comments.forum_id')
+            ->paginate(8);
+
+        //お気に入りリスト
+        $interest = new Interest;
+
+        $myInterest = $forum->join('interests', 'forums.id', 'interests.forum_id')
+            ->where('interests.user_id', '=', Auth::id())
+            ->select('forums.id', 'forums.title', 'forums.image', 'forums.discussion', 'forums.created_at', 'forums.updated_at')
+            ->paginate(8);
+        //ddd($myInterest);
+
+        //検索結果一覧
+        $search = $request->input('search');
+
+        $searchResult = $forum->where('title', 'like', "%{$search}%")
+            ->orwhere('discussion', 'LIKE', "%{$search}%")
             ->get();
+        //ddd($searchResult);
 
         //$forum = $forum->id->get();
         //ddd($forum);
@@ -35,7 +52,7 @@ class DisplayController extends Controller
         //    ->where('forum_id', '=', 'forum.id')
         //    ->get();
         //ddd($judge);
-        return view('mein', ['forums' => $forums, 'entry' => $entry]);
+        return view('mein', ['forums' => $searchResult, 'entry' => $entry, 'myInterests' => $myInterest, 'search' => $search]);
     }
     public function login()
     {

@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Interest;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
+use App\Events\MyEvent;
 
 class RegistrationController extends Controller
 {
@@ -104,6 +105,9 @@ class RegistrationController extends Controller
         $comment->parent_comment_id = $request->comment_id;
         //ddd($request->comment_id);
         $comment->save();
+
+        broadcast(new \App\Events\MyEvent());
+        Comment::getEventDispatcher()->dispatch('comments');
 
         return back();
     }

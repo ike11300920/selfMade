@@ -6,6 +6,7 @@ function like(postId) {
       url: `/like/${postId}`,
       type: "POST",
     })
+
       .done(function (data, status, xhr) {
         console.log(data)
       })
