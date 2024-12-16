@@ -29,4 +29,6 @@ main {
   #user-name{
     margin-right: 10px;
   }
-  
+  footer{
+    display: none;
+  }

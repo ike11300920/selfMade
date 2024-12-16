@@ -14,3 +14,15 @@ function like(postId) {
         console.log()
       })
   }
+          // Enable pusher logging - don't include this in production
+          Pusher.logToConsole = true;
+
+          var pusher = new Pusher("02d3f87505cd90217b5e", {
+              cluster: "ap3"
+          });
+  
+          const channel = pusher.subscribe('my-channel');
+          channel.bind('my-event', function (data) {
+          document.getElementById('comment').innerHTML = data.message;
+          console.log(JSON.stringify(data));
+  });

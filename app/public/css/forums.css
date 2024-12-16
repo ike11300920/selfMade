@@ -46,8 +46,23 @@ main {
     margin-right: 35px;
   }
   #content{
-    margin-top: 53vh;
+    margin-top: 55vh;
   }
   #comment{
     margin-top: 300px;
   }
+  #discussion{
+    height: 190px;
+    position:relative;
+    margin-bottom: 10px;
+  }
+  #discussion p{
+    height: 100%;
+  }
+  #commentIcon{
+    width: 25px;
+    height: 25px;
+    }
+    footer{
+      display: none;
+    }

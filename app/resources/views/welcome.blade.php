@@ -12,14 +12,15 @@
             cluster: "{{ $cluster }}"
         });
 
-        const channel = pusher.subscribe('hello');
-  channel.bind('CommentUpdated', function (comments) {
-    console.log(comments.model.comment);
+        const channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function (data) {
+        document.getElementById('comment').innerHTML = data.message;
+        console.log(JSON.stringify(data));
 });
     </script>
 </head>
 
 <body>
     <h1>Pusher Test</h1>
-    <div id="message"></div>
+    <div id="comment"></div>
 </body>

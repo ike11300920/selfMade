@@ -49,3 +49,23 @@ nav{
 #name{
   margin-top: -80px;
 }
+#url{
+  height: 70px;
+  position:relative;
+  margin-bottom: 10px;
+}
+#url p{
+  height: 100%;
+}
+.card-img-top{
+  height: 200px;
+  object-fit: cover;
+}
+#deviceTitle{
+  margin-top: 40px;
+  margin-bottom: 35px;
+  letter-spacing: 20px;
+}
+footer{
+  display: none;
+}

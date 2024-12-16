@@ -38,15 +38,15 @@ class="bg-dark"
                                         <input class='form-control' name='job' value="{{ $profile['job'] }}"></textarea>
 
                                         <label for='comment' class='mt-2 text-white'>自己紹介</label>
-                                        <textarea class='form-control form-control-lg' name='introduction' value="{{$profile['introduction']}}"></textarea>
+                                        <textarea class='form-control' name='introduction'>{{$profile['introduction']}}</textarea>
 
-                                        <div id="interest" class="btn btn-outline-warning">★</div>
                                         <button type='submit' class="btn btn-outline-primary"name="submit1">編集登録</button>
                                     </div>
                                 </div>
                             </form>
-                            <!-- Call to Action-->
-                            <div id="comment" class="card text-white bg-secondary my-5 py-4 text-center btn btn-light fs-5" data-bs-toggle="modal" data-bs-target="#myModal" href="#">
+
+                            <!-- 新規使用デバイス追加-->
+                            <div id="comment" class="card text-white bg-primary my-5 py-4 text-center btn btn-light fs-5" data-bs-toggle="modal" data-bs-target="#myModal" href="#">
                                 <div class="card-body">使用デバイス追加</div>
                             </div>
 
@@ -60,39 +60,72 @@ class="bg-dark"
                                             <form action="{{ route('mypage.setting') }}" method="post" enctype="multipart/form-data">
                                             @csrf
 
-                                                <p>デバイス名</p>
+                                                <p>【画像】</p>
+                                                <input type="file" class='form-control w-50 img-setting' name="image" data-target-id="preview" data-classes="hoge fuga" onchange="previewer.setImgPreview(event);">
+
+                                                <p>【デバイス名】</p>
                                                 <input class='form-control' name='name'></textarea>
 
-                                                <p>商品URL</p>
+                                                <p>【商品URL】</p>
                                                 <textarea class='form-control' name='url'></textarea>
                                             
                                                 <button type='submit' class="btn btn-outline-primary"name="submit2">デバイス登録</button>
-                                            </form>
-                                            <div class="modal-footer">
+
                                                 <a class="btn btn-outline-dark" data-bs-dismiss="modal">閉じる</a>
-                                            </div>
+                                          
+                                            </form>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Content Row-->
-                            
+                            <!-- 使用デバイス一覧-->
                             <div class="row gx-4 gx-lg-5">
                                 @foreach ($devices as $device)
                                 <div class="col-md-4 mb-5">
                                     <div class="card h-100">
+
+                                        @if($device['image']==null)
+                                            <img class="card-img-top" src="{{ asset('storage/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg')}}" alt="..." />
+                                        @else
+                                            <img class="card-img-top" src="{{ asset( 'storage/' . $device['image']) }}" alt="..." />
+                                        @endif
+
                                         <div class="card-body">
                                             <h2 class="card-title">{{ $device['name'] }}</h2>
-                                            <p class="card-text">【商品URL:】{{ $device['url'] }}</p>
+                                            <div id="url">
+                                                <h3 class="card-text fs-5">【商品URL】</h3>
+                                                <p class="card-text overflow-y-auto">{{ $device['url'] }}</p>
+                                            </div>
                                         </div>
-                                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">削除</a></div>
+                                        <div class="card-footer">
+                                            <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#{{ $device['id'] }}" href="#!">削除</a>
+                                        </div>
+
+                                        <!-- モーダル内 -->
+                                        <div id="app" class="container">
+                                            <div id="{{ $device['id'] }}" class="modal fade" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">デバイス情報を削除しますか？</h5>
+                                                        </div>
+                                                        <form action="{{ route('device.delete', ['device' => $device['id']]) }}" method="post">
+                                                        @csrf
+                                        
+                                                            <button type='submit' class="btn btn-outline-primary" name="submit3">削除</button>
+                                                            <a class="btn btn-outline-dark" data-bs-dismiss="modal">閉じる</a>
+                                        
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
-                            
-
                         </div>
                     </div>
                 </div>

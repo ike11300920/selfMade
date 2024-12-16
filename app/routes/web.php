@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
     //マイページ編集
     Route::get('/mypage/setting', [DisplayController::class, 'mypageSettingForm'])->name('mypage.setting');
     Route::post('/mypage/setting', [RegistrationController::class, 'mypageSetting']);
+    Route::post('/mypage/device/{device}', [RegistrationController::class, 'deviceDelete'])->name('device.delete');
 
     //新規フォーラム作成
     Route::get('/forums/create', [DisplayController::class, 'forumsCreateForm'])->name('forums.create');
@@ -58,9 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-Route::get('/test', function () {
-    event(new MyEvent('Hello World'));
-});
+
 Route::get('/i', function () {
     return view('welcome', ['key' => env('PUSHER_APP_KEY'), 'cluster' => env('PUSHER_APP_CLUSTER')]);
 });

@@ -16,6 +16,7 @@ section{
 }
 #myTab{
     margin-top:3vh;   
+    margin-bottom: 3vh;
 }
 #title{
   letter-spacing: .5rem;
@@ -93,4 +94,11 @@ nav{
 .vr{
   color: #fff;
   margin-right: 35px;
+}
+#forumIcon{
+width: 30px;
+height: 30px;
+}
+#newForum{
+  font-size: 13px;
 }

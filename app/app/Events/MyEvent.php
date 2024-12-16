@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Comment;
 
 class MyEvent implements ShouldBroadcast
 {
@@ -17,9 +18,12 @@ class MyEvent implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct()
+
+    public $message;
+
+    public function __construct($message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -29,7 +33,11 @@ class MyEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        //return [new PrivateChannel('channel-name'),];
-        return new Channel('hello');
+        //return [new PrivateChannel('channel-name')];
+        return ['my-channel'];
+    }
+    public function broadcastAs()
+    {
+        return 'my-event';
     }
 }

@@ -34,13 +34,17 @@ class="bg-dark"
                                     <p class="text-white">自己紹介：{{ $profile['introduction'] }}</p>
                                     <div id="interest" class="btn btn-outline-warning">★
                                     </div>
+
+                                    @if(Auth::id()==$profile['id'])
                                     <a id="edit" class="btn btn-outline-primary" href="{{ route('mypage.setting') }}">編集ページへ</a>
+                                    @endif
+
                                 </div>
 
                             </div>
                             <!-- Call to Action-->
-                            <div id="comment" class="card text-white bg-secondary my-5 py-4 text-center btn btn-light fs-5">
-                                <div class="card-body">使用デバイス</div>
+                            <div class="text-center">
+                                <h2 class="section-heading text-uppercase text-white" id="deviceTitle">DEVICES</h2>
                             </div>
                             <!-- Content Row-->
                             
@@ -48,9 +52,19 @@ class="bg-dark"
                                 @foreach ($devices as $device)
                                 <div class="col-md-4 mb-5">
                                     <div class="card h-100">
+
+                                        @if($device['image']==null)
+                                            <img class="card-img-top" src="{{ asset('storage/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg')}}" alt="..." />
+                                        @else
+                                            <img class="card-img-top" src="{{ asset( 'storage/' . $device['image']) }}" alt="..." />
+                                        @endif
+
                                         <div class="card-body">
                                             <h2 class="card-title">{{ $device['name'] }}</h2>
-                                            <p class="card-text">【商品URL:】{{ $device['url'] }}</p>
+                                            <div id="url">
+                                                <h3 class="card-text fs-5">【商品URL】</h3>
+                                                <p class="card-text overflow-y-auto">{{ $device['url'] }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

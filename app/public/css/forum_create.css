@@ -43,3 +43,6 @@ main {
     color: #fff;
     margin-right: 35px;
   }
+  footer{
+    display: none;
+  }

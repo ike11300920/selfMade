@@ -40,22 +40,25 @@ class RegistrationController extends Controller
     }
     public function forumEdit(Forum $forum, Request $request)
     {
-        $image = $request->file('image');
-        //ddd($forum);
-        // 画像がアップロードされていれば、storageに保存
-        if ($request->hasFile('image')) {
-            $path = \Storage::put('/public', $image);
-            $path = explode('/', $path);
-            $forum->image = $path[1];
-        } else {
-            //$path = null;
+        if (isset($_POST['submit1'])) {
+            $image = $request->file('image');
+            //ddd($forum);
+            // 画像がアップロードされていれば、storageに保存
+            if ($request->hasFile('image')) {
+                $path = \Storage::put('/public', $image);
+                $path = explode('/', $path);
+                $forum->image = $path[1];
+            } else {
+                //$path = null;
+            }
+
+            $forum->title = $request->title;
+            $forum->discussion = $request->discussion;
+
+            $forum->save();
+        } elseif (isset($_POST['submit2'])) {
+            $forum->delete();
         }
-
-        $forum->title = $request->title;
-        $forum->discussion = $request->discussion;
-
-        $forum->save();
-
         return redirect('/');
     }
     public function mypageSetting(Request $request)
@@ -85,13 +88,32 @@ class RegistrationController extends Controller
 
             $device = new Device;
 
+            $image = $request->file('image');
+            // dd($image);
+            // 画像がアップロードされていれば、storageに保存
+            if ($request->hasFile('image')) {
+                $path = \Storage::put('/public', $image);
+                $path = explode('/', $path);
+                $device->image = $path[1];
+            } else {
+                $path = null;
+            }
+
+            $id = Auth::id();
+
             $device->name = $request->name;
             $device->url = $request->url;
+            $device->user_id = $id;
 
             $device->save();
 
             return redirect('/mypage/setting');
         }
+    }
+    public function deviceDelete(Device $device, Request $request)
+    {
+        $device->delete();
+        return redirect('/mypage/setting');
     }
     public function forumDetailComment(Forum $forum, Request $request)
     {
@@ -104,10 +126,10 @@ class RegistrationController extends Controller
         $comment->forum_id =  $forum_id;
         $comment->parent_comment_id = $request->comment_id;
         //ddd($request->comment_id);
-        $comment->save();
 
-        broadcast(new \App\Events\MyEvent());
-        Comment::getEventDispatcher()->dispatch('comments');
+        event(new MyEvent('コメントされました'));
+
+        $comment->save();
 
         return back();
     }
