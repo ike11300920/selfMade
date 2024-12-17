@@ -127,7 +127,7 @@ class RegistrationController extends Controller
         $comment->parent_comment_id = $request->comment_id;
         //ddd($request->comment_id);
 
-        event(new MyEvent('コメントされました'));
+        event(new MyEvent('気になるフォーラムにコメントされました！！'));
 
         $comment->save();
 

@@ -41,7 +41,7 @@ class="bg-dark"
                             </div>
 
                             <!-- モーダル内 -->
-                            <div id="app" class="container">
+                            <div id="app" class="col-md-4 text-center row align-items-center">
                                 <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -101,7 +101,7 @@ class="bg-dark"
                                     </div>
 
                                     <!-- モーダル内 -->
-                                    <div id="app" class="container">
+                                    <div id="app" class="col-md-4 text-center row align-items-center">
                                         <div id="{{ $comment['id'] }}" class="modal fade" tabindex="-1" role="dialog">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">

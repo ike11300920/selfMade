@@ -85,15 +85,17 @@ class DisplayController extends Controller
     {
         return view('password_reset_done');
     }
-    public function mypage()
+    public function mypage($user)
     {
-        $profile = Auth::user();
-        //dd($profile);
-        $id = Auth::id();
+        $id = $user;
+        $all_user = new User;
+        $profile = $all_user->where('id', '=', $id)->get();
+        //$profile = Auth::user();
+        //ddd($profile);
 
         $all_device = new Device;
         $device = $all_device->where('user_id', '=', $id)->get()->toArray();
-        return view('mypage', ['profile' => $profile, 'devices' => $device,]);
+        return view('mypage', ['profiles' => $profile, 'devices' => $device,]);
     }
     public function mypageSettingForm()
     {

@@ -18,12 +18,13 @@ class="bg-dark"
                             <!-- Heading Row-->
                             <div class="row gx-4 gx-lg-5 align-items-center my-5">
 
+                                @foreach ($profiles as $profile)
                                 <div class="col-lg-7" id="forum-img">
-                                
-                                    @if( Auth::user()->image ==null)
+                                    
+                                    @if( $profile['image'] ==null)
                                         <img id="icon" class="img-profile rounded-circle" src="{{ asset('storage/kkrn_icon_user_4.png')}}" alt="..." />
                                     @else
-                                        <img id="icon" class="img-profile rounded-circle" src="{{ asset( 'storage/' . Auth::user()->image ) }}" alt="...">
+                                        <img id="icon" class="img-profile rounded-circle" src="{{ asset( 'storage/' . $profile['image'] ) }}" alt="...">
                                     @endif
 
                                 </div>
@@ -40,7 +41,7 @@ class="bg-dark"
                                     @endif
 
                                 </div>
-
+                                @endforeach
                             </div>
                             <!-- Call to Action-->
                             <div class="text-center">

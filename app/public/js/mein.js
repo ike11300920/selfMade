@@ -24,5 +24,5 @@ function like(postId) {
           const channel = pusher.subscribe('my-channel');
           channel.bind('my-event', function (data) {
           document.getElementById('comment').innerHTML = data.message;
-          console.log(JSON.stringify(data));
   });
+  

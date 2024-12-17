@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     //メイン表示
     Route::get('/', [DisplayController::class, 'index'])->name('/');
     //マイページ表示
-    Route::get('/mypage', [DisplayController::class, 'mypage'])->name('mypage');
+    Route::get('/mypage/{user}', [DisplayController::class, 'mypage'])->name('mypage');
     //マイページ編集
     Route::get('/mypage/setting', [DisplayController::class, 'mypageSettingForm'])->name('mypage.setting');
     Route::post('/mypage/setting', [RegistrationController::class, 'mypageSetting']);

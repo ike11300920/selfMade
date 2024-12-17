@@ -31,7 +31,7 @@
                         @if(Auth::check())
                         
                         
-                        <a id="user-name" class="text-warning d-flex align-items-center fs-5" href="{{ route('mypage') }}">> {{ Auth::user()->name }}</a>
+                        <a id="user-name" class="text-warning d-flex align-items-center fs-5" href="{{ route('mypage', ['user' =>Auth::id()]) }}">> {{ Auth::user()->name }}</a>
                         
                        
                         @if( Auth::user()->image ==null)

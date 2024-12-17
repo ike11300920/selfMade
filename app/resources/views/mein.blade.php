@@ -24,7 +24,7 @@ class="bg-dark"
                     <span class="badge badge-pill badge-secondary text-white" id="newForum">>新規フォーラム開設</span>
                 </a>    
 
-                  <div id="comment" class="text-white btn btn-warning"></div>
+                <div id="comment" class="text-white btn btn-warning"></div>
 
         </header>
 
@@ -68,7 +68,7 @@ class="bg-dark"
             <div class="card h-100">
 
               <!-- 通知 -->
-              <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+              <span id="comment" class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                 <span class="visually-hidden">New alerts</span>
               </span>
 
@@ -99,16 +99,18 @@ class="bg-dark"
                 @foreach ($users as $user)
                   @if($forum['user_id']==$user['id'])
 
-                  <div class="text-dark">
+                  <a href="{{ route('mypage', ['user' => $user['id']]) }}">
+                  <div class="text-dark fs-5">
                     @if( $user['image'] ==null)
                       <img id="forumIcon" class="img-profile rounded-circle" src="{{ asset('storage/kkrn_icon_user_4.png')}}" alt="..." />
                     @else
                       <img id="forumIcon" class="img-profile rounded-circle" src="{{ asset( 'storage/' . $user['image'] ) }}" alt="...">
                     @endif
-
+                  
                     >{{ $user['name'] }}
                   </div>
-                          
+                  </a> 
+
                     @else
                     @endif
                 @endforeach
