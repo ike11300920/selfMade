@@ -16,7 +16,7 @@ class="bg-dark"
         <header class="masthead bg-dark">
                 <video id="device" src="{{ asset('storage/33093-395456662_small.mp4')}}" loop="" autoplay="" muted=""  width="100%" class="bgv"></video>
                 <a href="/">
-                    <img id="logo" src="{{ asset('storage/ガジェコン__3_-removebg-preview.png')}}"class="w-25 mx-auto d-block align-middle" />
+                    <img id="logo" src="{{ asset('storage/ガジェコン__3_-removebg-preview.png')}}"class="mx-auto d-block align-middle" />
                 </a>
 
                 <a href="{{ route('forums.create') }}" id="add-forum" class="btn btn-dark-moon text-white">
@@ -24,11 +24,12 @@ class="bg-dark"
                     <span class="badge badge-pill badge-secondary text-white" id="newForum">>新規フォーラム開設</span>
                 </a>    
 
-                <div id="comment" class="text-white btn btn-warning"></div>
+                <div id="message" class="text-white btn btn-warning"></div>
+                <div id="{{Auth::id()}}" class="hidden pusher"></div>
 
         </header>
 
-        <form class="w-25 mx-auto" id="search">
+        <form class="mx-auto" id="search">
             <div class="input-group">
                 <input class="form-control" name="search" type="text" placeholder="キーワードを入力" aria-label="Search for..." aria-describedby="btnNavbarSearch"  value="{{ $search }}"/>
                 <a href="{{route('/')}}">
@@ -68,9 +69,9 @@ class="bg-dark"
             <div class="card h-100">
 
               <!-- 通知 -->
-              <span id="comment" class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+              <!--<span id="comment" class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
                 <span class="visually-hidden">New alerts</span>
-              </span>
+              </span>-->
 
               <!-- お気に入り -->
               @if (!$forum->isLikedBy(Auth::user()))

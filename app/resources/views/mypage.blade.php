@@ -33,8 +33,7 @@ class="bg-dark"
                                     <h1 class="font-weight-light text-white" id="name">{{ $profile['name'] }}</h1>
                                     <p class="text-white">職業：{{ $profile['job'] }}</p>
                                     <p class="text-white">自己紹介：{{ $profile['introduction'] }}</p>
-                                    <div id="interest" class="btn btn-outline-warning">★
-                                    </div>
+                                    <!--<div id="interest" class="btn btn-outline-warning">★</div>-->
 
                                     @if(Auth::id()==$profile['id'])
                                     <a id="edit" class="btn btn-outline-primary" href="{{ route('mypage.setting') }}">編集ページへ</a>

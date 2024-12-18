@@ -19,7 +19,7 @@ main {
     height: 40px;
   }
   #title-img{
-    width: 10vw;
+    width: 170px;
   }
   nav{
     background-color: rgba(33, 37, 41,0.8);
@@ -31,9 +31,11 @@ main {
     height: 300px;
     width: 600px;
     object-fit: cover;
+    margin-top: -30px;
   }
   #interest,#edit{
     position : relative ; 
+    margin-top: 10px;
   }
   #icon{
     margin-right: 40px;
@@ -52,7 +54,7 @@ main {
     margin-top: 300px;
   }
   #discussion{
-    height: 190px;
+    height: 150px;
     position:relative;
     margin-bottom: 10px;
   }
@@ -66,3 +68,10 @@ main {
     footer{
       display: none;
     }
+    #forunUserIcon{
+      width: 25px;
+      height: 25px;
+      }
+      #principal{
+        position: relative;
+      }

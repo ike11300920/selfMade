@@ -16,9 +16,10 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    @yield('stylesheet')
+    
     @vite(['resources/js/app.js'])
+    @yield('stylesheet')
+
 </head>
 
     <body @yield('background')>
@@ -60,7 +61,7 @@
             </div>
         </nav>
     @yield('content')
-</body>
+    </body>
 
 <footer class="py-5 bg-warning">
     <div class="container"><p class="m-0 text-center text-dark">Copyright &copy; Gadgetcon 2024</p></div>

@@ -64,7 +64,7 @@ class RegistrationController extends Controller
     public function mypageSetting(Request $request)
     {
         $user = Auth::user();
-
+        $id = Auth::id();
         if (isset($_POST['submit1'])) {
             $image = $request->file('image');
             // dd($image);
@@ -83,7 +83,7 @@ class RegistrationController extends Controller
 
             $user->save();
 
-            return redirect('/mypage');
+            return redirect(route('mypage', ['user' => $id]));
         } elseif (isset($_POST['submit2'])) {
 
             $device = new Device;
@@ -107,7 +107,7 @@ class RegistrationController extends Controller
 
             $device->save();
 
-            return redirect('/mypage/setting');
+            return redirect('/setting');
         }
     }
     public function deviceDelete(Device $device, Request $request)
@@ -115,6 +115,7 @@ class RegistrationController extends Controller
         $device->delete();
         return redirect('/mypage/setting');
     }
+
     public function forumDetailComment(Forum $forum, Request $request)
     {
         $comment = new Comment;
@@ -127,7 +128,24 @@ class RegistrationController extends Controller
         $comment->parent_comment_id = $request->comment_id;
         //ddd($request->comment_id);
 
-        event(new MyEvent('気になるフォーラムにコメントされました！！'));
+        //コメントしたフォーラムをお気に入りしているユーザーをあぶりだし
+        $all_user = Auth::user();
+        $all_forum = new Forum;
+        $interestUsers = $all_forum->join('interests', 'forums.id', 'interests.forum_id')
+            ->where('interests.forum_id', '=', $forum_id)
+            ->select('interests.user_id')
+            ->groupBy('interests.user_id')
+            ->get()
+            ->toArray();
+
+        //$interest_forum = $join_forum->where('interests.user_id', '=', Auth::id())
+        //    ->get();
+
+        //dd($interestUsers);
+        foreach ($interestUsers as $interestUser) {
+            $user = $interestUser['user_id'];
+        }
+        event(new MyEvent($user, 'フォーラムにコメントされました！！'));
 
         $comment->save();
 

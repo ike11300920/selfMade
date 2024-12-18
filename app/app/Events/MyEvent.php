@@ -19,10 +19,12 @@ class MyEvent implements ShouldBroadcast
      * Create a new event instance.
      */
 
+    public $user;
     public $message;
 
-    public function __construct($message)
+    public function __construct($user, $message)
     {
+        $this->user = $user;
         $this->message = $message;
     }
 
@@ -33,7 +35,7 @@ class MyEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        //return [new PrivateChannel('channel-name')];
+        //return new PrivateChannel('notification-channel.' . $this->user, $this->message);
         return ['my-channel'];
     }
     public function broadcastAs()

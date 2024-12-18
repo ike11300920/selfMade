@@ -10,6 +10,7 @@ body {
 #logo{
   margin-top: -33vh;
   margin-bottom: 0px;
+  width: 400px;
 }
 section{
   margin-top:-10vh;
@@ -22,7 +23,8 @@ section{
   letter-spacing: .5rem;
 }
 #search{
-  margin-top:10vh ;
+  margin-top:22vh ;
+  width: 400px;
 }
 #navbarSupportedContent img{
   width: 40px;
@@ -30,7 +32,10 @@ section{
 }
 #add-forum{
   margin-top:7vh ;
-  margin-left: 43%;
+  position: absolute;
+  left: 50%;
+  transform:translateX(-50%);
+  -webkit- transform:translateX(-50%);
 }
 #mien-text{
   overflow: hidden;
@@ -43,7 +48,10 @@ section{
   object-fit: cover;
 }
 #page{
-  margin-left: 67vh;
+  position: absolute;
+  left: 50%;
+  transform:translateX(-50%);
+  -webkit- transform:translateX(-50%);
 }
 .btn-dark-moon {
   background: #141E30;  /* fallback for old browsers */
@@ -80,7 +88,7 @@ section{
   100% { transform:translateX(-100%); }
 }
 #title-img{
-  width: 10vw;
+  width: 170px;
 }
 nav{
   background-color: rgba(33, 37, 41,0.8);

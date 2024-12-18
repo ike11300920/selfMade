@@ -42,9 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
     //マイページ表示
     Route::get('/mypage/{user}', [DisplayController::class, 'mypage'])->name('mypage');
     //マイページ編集
-    Route::get('/mypage/setting', [DisplayController::class, 'mypageSettingForm'])->name('mypage.setting');
-    Route::post('/mypage/setting', [RegistrationController::class, 'mypageSetting']);
-    Route::post('/mypage/device/{device}', [RegistrationController::class, 'deviceDelete'])->name('device.delete');
+    Route::get('/setting', [DisplayController::class, 'mypageSettingForm'])->name('mypage.setting');
+    Route::post('/setting', [RegistrationController::class, 'mypageSetting']);
+    Route::post('/device/{device}', [RegistrationController::class, 'deviceDelete'])->name('device.delete');
 
     //新規フォーラム作成
     Route::get('/forums/create', [DisplayController::class, 'forumsCreateForm'])->name('forums.create');
