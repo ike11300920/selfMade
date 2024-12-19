@@ -20,14 +20,14 @@ class usersTableSeeder extends Seeder
                 'email' => 'test1@test.co.jp',
                 'password' => bcrypt('11111111'),
                 'created_at' => Carbon::now(),
-                'update_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ],
             [
                 'name' => 'test2',
                 'email' => 'test2@test.co.jp',
                 'password' => bcrypt('22222222'),
                 'created_at' => Carbon::now(),
-                'update_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]
         ];
 
