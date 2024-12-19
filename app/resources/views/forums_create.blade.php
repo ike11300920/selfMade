@@ -43,7 +43,7 @@ class="bg-dark"
                             <!-- プレビュー表示用のdivタグ -->
                             <div id="preview"></div>
                             <!-- ファイルインプットタグ -->
-                            <input type="file" class='form-control' name="image" data-target-id="preview" data-classes="hoge fuga" onchange="previewer.setImgPreview(event);">
+                            <input type="file" accept="image/*" class='form-control' name="image" data-target-id="preview" data-classes="hoge fuga" onchange="previewer.setImgPreview(event);">
                             
                             <div class='row justify-content-center'>
                                 <button type='submit' class='btn btn-primary w-25 mt-3'>登録</button>

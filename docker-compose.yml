@@ -42,6 +42,40 @@ services:
     depends_on:
       - db
 
+    command: |
+      bash -c "
+      # .envファイルが存在しない場合の処理
+      if [ ! -f /var/www/html/.env ]; then
+        echo '.env file not found. Creating from .env.example...' && \
+        cp /var/www/html/.env.example /var/www/html/.env && \
+        sed -i 's/DB_HOST=.*/DB_HOST=db/' /var/www/html/.env && \
+        sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=root/' /var/www/html/.env
+      else
+        echo '.env file already exists.';
+      fi
+      # MySQLの準備を待つ
+      until mysql -h db -u root -proot -e 'SELECT 1'; do
+        echo 'Waiting for MySQL to be ready...'
+        sleep 2
+      done
+      # Laravelのマイグレーションとビルド
+      npm install sass@latest && \
+      composer install && \
+      composer update && \
+      composer dump-autoload && \
+      php artisan key:generate && \
+      php artisan storage:link && \
+      chown -R www-data storage/ && \
+      php artisan cache:clear && \
+      npm install && \
+      npm run build && \
+      php artisan migrate --force --no-interaction && \
+      php artisan db:seed --class=usersTableSeeder && \
+      php artisan db:seed --class=forumsTableSeeder && \
+      composer require pusher/pusher-php-server && \
+      php-fpm"
+      tty: true
+
   db:
     container_name: curriculum-db
     image: mysql:5.7
