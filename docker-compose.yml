@@ -44,7 +44,7 @@ services:
 
     command: |
       bash -c "
-      # .envファイルが存在しない場合の処理
+
       if [ ! -f /var/www/html/.env ]; then
         echo '.env file not found. Creating from .env.example...' && \
         cp /var/www/html/.env.example /var/www/html/.env && \

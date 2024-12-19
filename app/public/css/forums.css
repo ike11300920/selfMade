@@ -75,3 +75,7 @@ main {
       #principal{
         position: relative;
       }
+      #child{
+        margin: 0 0 0 auto;
+        width: 70vw;
+      }

@@ -156,7 +156,7 @@ class="bg-dark"
                                     <!-- 子コメント -->
                                     @foreach ($comments as $child)
                                     @if($comment['id']==$child['parent_comment_id'])
-                                        <div class="card h-75 w-75 mr-0">
+                                        <div class="card h-75" id="child">
                                             <div class="card-body">
                                                 <h2 class="card-title fs-5">↪
                                                     

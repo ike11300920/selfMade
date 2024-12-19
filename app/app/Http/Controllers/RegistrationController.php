@@ -129,7 +129,6 @@ class RegistrationController extends Controller
         //ddd($request->comment_id);
 
         //コメントしたフォーラムをお気に入りしているユーザーをあぶりだし
-        $all_user = Auth::user();
         $all_forum = new Forum;
         $interestUsers = $all_forum->join('interests', 'forums.id', 'interests.forum_id')
             ->where('interests.forum_id', '=', $forum_id)
@@ -137,13 +136,39 @@ class RegistrationController extends Controller
             ->groupBy('interests.user_id')
             ->get()
             ->toArray();
-
         //dd($interestUsers);
         foreach ($interestUsers as $interestUser) {
             $user = $interestUser['user_id'];
-            event(new MyEvent($user, '気になるフォーラムにコメントがありました！！'));
+            event(new MyEvent($user, '★「気になる」フォーラムにコメントがありました！！'));
         };
 
+
+        //コメントしたフォーラムを作成したユーザーをあぶりだし
+        $all_forum = new Forum;
+        $createUsers = $all_forum
+            ->where('forums.id', '=', $forum_id)
+            ->select('forums.user_id')
+            ->get()
+            ->toArray();
+        //dd($createUsers);
+        foreach ($createUsers as $createUser) {
+            $user = $createUser['user_id'];
+            event(new MyEvent($user, '★「開設済み」のフォーラムにコメントがありました！！'));
+        };
+
+        //コメントしたフォーラムにコメントしているユーザーをあぶりだし
+        $all_forum = new Forum;
+        $addUsers = $all_forum->join('comments', 'forums.id', 'comments.forum_id')
+            ->where('comments.forum_id', '=', $forum_id)
+            ->select('comments.user_id')
+            ->groupBy('comments.user_id')
+            ->get()
+            ->toArray();
+        //dd($addUsers);
+        foreach ($addUsers as $addUser) {
+            $user = $addUser['user_id'];
+            event(new MyEvent($user, '★「参加済み」のフォーラムにコメントがありました！！'));
+        };
 
         $comment->save();
 

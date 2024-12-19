@@ -15,6 +15,14 @@ class="bg-dark"
 @section('content')
         <header class="masthead bg-dark">
                 <video id="device" src="{{ asset('storage/33093-395456662_small.mp4')}}" loop="" autoplay="" muted=""  width="100%" class="bgv"></video>
+                
+                <div class="bbs2">
+                  <ul>
+                    <li><div id="message" class="text-warning"></div></li>
+                  </ul>
+                </div>
+                <div id="{{Auth::id()}}" class="hidden pusher"></div>
+
                 <a href="/">
                     <img id="logo" src="{{ asset('storage/ガジェコン__3_-removebg-preview.png')}}"class="mx-auto d-block align-middle" />
                 </a>
@@ -23,9 +31,6 @@ class="bg-dark"
                     <span class="badge badge-pill badge-secondary text-warning">New</span>
                     <span class="badge badge-pill badge-secondary text-white" id="newForum">>新規フォーラム開設</span>
                 </a>    
-
-                <div id="message" class="badge badge-warning bg-warning text-white fs-5"></div>
-                <div id="{{Auth::id()}}" class="hidden pusher"></div>
 
         </header>
 
@@ -429,14 +434,14 @@ class="bg-dark"
       <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
     </ul>
     <ul>
-        <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
-        <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
-        <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
-        <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
-        <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
-        <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
-        <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
-        <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
+      <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
+      <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
+      <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
+      <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
+      <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
+      <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
+      <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
+      <li><img src="{{ asset('storage/gadgetcon7.png')}}"/></li>
     </ul>
   </div>
 @endsection
