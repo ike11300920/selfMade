@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
-            $table->integer('forum_id')->nullable(false);
-            $table->string('name', 30)->nullable(false);
-            $table->text('url');
+            $table->integer('forum_id')->nullable();
+            $table->integer('user_id');
+            $table->string('name', 30);
+            $table->text('url')->nullable();
+            $table->string('image', 300)->nullable();
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ function like(postId) {
       })
   }
 
+  //pusher開始
   Pusher.logToConsole = true;
 
   var pusher = new Pusher('02d3f87505cd90217b5e', {

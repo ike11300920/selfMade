@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable(false);
-            $table->integer('forum_id')->nullable(false);
-            $table->integer('parent_comment_id');
+            $table->integer('user_id');
+            $table->integer('forum_id');
+            $table->integer('parent_comment_id')->nullable();
             $table->text('comment');
-            $table->string('image', 300);
+            $table->string('image', 300)->nullable();
             $table->timestamps();
         });
     }

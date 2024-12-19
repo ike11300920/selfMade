@@ -24,7 +24,7 @@ class="bg-dark"
                     <span class="badge badge-pill badge-secondary text-white" id="newForum">>新規フォーラム開設</span>
                 </a>    
 
-                <div id="message" class="text-white btn btn-warning"></div>
+                <div id="message" class="badge badge-warning bg-warning text-white fs-5"></div>
                 <div id="{{Auth::id()}}" class="hidden pusher"></div>
 
         </header>

@@ -110,3 +110,10 @@ height: 28px;
 #newForum{
   font-size: 13px;
 }
+#message{
+  position: absolute;
+  margin-top: -180px;
+  left: 50%;
+  transform:translateX(-50%);
+  -webkit- transform:translateX(-50%);
+}

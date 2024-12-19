@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('forums', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable(false);
-            $table->string('title', 30)->nullable(false);
-            $table->string('image', 300);
+            $table->integer('user_id');
+            $table->string('title', 30);
+            $table->string('image', 300)->nullable();
             $table->text('discussion');
             $table->timestamps();
         });

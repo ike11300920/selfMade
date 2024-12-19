@@ -138,14 +138,12 @@ class RegistrationController extends Controller
             ->get()
             ->toArray();
 
-        //$interest_forum = $join_forum->where('interests.user_id', '=', Auth::id())
-        //    ->get();
-
         //dd($interestUsers);
         foreach ($interestUsers as $interestUser) {
             $user = $interestUser['user_id'];
-        }
-        event(new MyEvent($user, 'フォーラムにコメントされました！！'));
+            event(new MyEvent($user, '気になるフォーラムにコメントがありました！！'));
+        };
+
 
         $comment->save();
 

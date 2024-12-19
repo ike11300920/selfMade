@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('interest', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable(false);
-            $table->integer('forum_id')->nullable(false);
+            $table->integer('user_id');
+            $table->integer('forum_id');
             $table->timestamps();
         });
     }
